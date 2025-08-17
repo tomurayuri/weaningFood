@@ -1,5 +1,9 @@
 import { BasicFood } from '@/types';
 
+/**
+ * 基本離乳食データベース
+ * 10種類の基本的な離乳食材の栄養価データ（100g基準）
+ */
 export const basicFoods: BasicFood[] = [
   {
     name: 'お粥',
@@ -123,14 +127,49 @@ export const basicFoods: BasicFood[] = [
   },
 ];
 
+/**
+ * 食材名で基本食材データを検索します
+ * @param name - 食材名
+ * @returns 該当する食材データ（見つからない場合はundefined）
+ * 
+ * @example
+ * ```typescript
+ * const rice = getFoodByName('お粥');
+ * if (rice) {
+ *   console.log(`タンパク質: ${rice.nutritionPer100g.protein}g`);
+ * }
+ * ```
+ */
 export const getFoodByName = (name: string): BasicFood | undefined => {
   return basicFoods.find(food => food.name === name);
 };
 
+/**
+ * カテゴリ別に食材データを取得します
+ * @param category - 食材カテゴリ（'grain' | 'vegetable' | 'protein' | 'fruit' | 'other'）
+ * @returns 該当カテゴリの食材配列
+ * 
+ * @example
+ * ```typescript
+ * // 野菜類の食材を取得
+ * const vegetables = getFoodsByCategory('vegetable');
+ * console.log(vegetables.map(v => v.name)); // ['にんじん', 'かぼちゃ', 'ほうれん草']
+ * ```
+ */
 export const getFoodsByCategory = (category: BasicFood['category']): BasicFood[] => {
   return basicFoods.filter(food => food.category === category);
 };
 
+/**
+ * 全ての基本食材の名前一覧を取得します
+ * @returns 食材名の配列
+ * 
+ * @example
+ * ```typescript
+ * const allFoodNames = getFoodNames();
+ * console.log(allFoodNames); // ['お粥', 'にんじん', 'かぼちゃ', ...]
+ * ```
+ */
 export const getFoodNames = (): string[] => {
   return basicFoods.map(food => food.name);
 };
