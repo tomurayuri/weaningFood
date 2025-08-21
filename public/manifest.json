@@ -1,0 +1,27 @@
+{
+  "name": "離乳食記録アプリ",
+  "short_name": "離乳食記録",
+  "description": "赤ちゃんの離乳食摂取記録と栄養分析アプリケーション",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["health", "productivity", "lifestyle"],
+  "lang": "ja",
+  "dir": "ltr"
+}
