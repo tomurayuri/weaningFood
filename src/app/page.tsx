@@ -1,131 +1,141 @@
 import Link from 'next/link';
+import Container from '@/components/ui/Container';
+import Card, { CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 
 export default function Home() {
+  const features = [
+    {
+      href: '/profile',
+      icon: '👶',
+      title: 'プロフィール',
+      description: '赤ちゃんの基本情報を登録・管理',
+      color: 'bg-blue-50 text-blue-600 border-blue-200',
+      iconBg: 'bg-blue-100'
+    },
+    {
+      href: '/record',
+      icon: '📝',
+      title: '食事記録',
+      description: '毎日の離乳食を簡単記録',
+      color: 'bg-green-50 text-green-600 border-green-200',
+      iconBg: 'bg-green-100'
+    },
+    {
+      href: '/history',
+      icon: '📅',
+      title: '履歴',
+      description: '過去の食事記録をカレンダーで確認',
+      color: 'bg-purple-50 text-purple-600 border-purple-200',
+      iconBg: 'bg-purple-100'
+    },
+    {
+      href: '/analysis',
+      icon: '📊',
+      title: '栄養分析',
+      description: '栄養バランスをチャートで確認',
+      color: 'bg-orange-50 text-orange-600 border-orange-200',
+      iconBg: 'bg-orange-100'
+    },
+    {
+      href: '/report',
+      icon: '📋',
+      title: '成長レポート',
+      description: '詳細な成長・栄養レポート',
+      color: 'bg-red-50 text-red-600 border-red-200',
+      iconBg: 'bg-red-100'
+    }
+  ];
+
+  const statusItems = [
+    { status: 'completed', label: 'プロフィール管理 - 赤ちゃんの基本情報登録' },
+    { status: 'completed', label: '食事記録 - 毎日の離乳食を簡単記録' },
+    { status: 'completed', label: '履歴表示 - カレンダー形式で過去の記録を確認' },
+    { status: 'completed', label: '栄養分析 - リアルタイムでの栄養バランス確認' },
+    { status: 'completed', label: '成長レポート - 詳細な栄養摂取レポート' },
+    { status: 'development', label: 'MicroCMS連携 - クラウド同期 (開発中)' }
+  ];
+
   return (
-    <main className="container mx-auto p-4">
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold mb-4">
+    <Container maxWidth="xl" className="space-y-8">
+      {/* ヘッダーセクション */}
+      <div className="text-center py-8 md:py-12">
+        <div className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-6">
+          <span className="text-2xl md:text-3xl">🍼</span>
+        </div>
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
           離乳食記録アプリ
         </h1>
-        <p className="text-gray-600 mb-8">
-          赤ちゃんの離乳食摂取記録と栄養分析
+        <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+          赤ちゃんの健やかな成長をサポートする、栄養管理と記録のアプリケーション
         </p>
       </div>
 
-      {/* メインナビゲーション */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
-        {/* プロフィール */}
-        <Link href="/profile" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-          <div className="text-center">
-            <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-              <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
-            </div>
-            <h2 className="text-lg font-semibold text-gray-800 mb-2">プロフィール</h2>
-            <p className="text-sm text-gray-600">赤ちゃんの基本情報を登録・管理</p>
-          </div>
-        </Link>
+      {/* 機能カードグリッド */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        {features.map((feature, index) => (
+          <Link key={index} href={feature.href}>
+            <Card hover className={`h-full border-2 ${feature.color}`}>
+              <CardContent className="flex flex-col items-center text-center p-6">
+                <div className={`w-16 h-16 ${feature.iconBg} rounded-full flex items-center justify-center mb-4`}>
+                  <span className="text-2xl">{feature.icon}</span>
+                </div>
+                <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
+                <p className="text-sm opacity-80 leading-relaxed">
+                  {feature.description}
+                </p>
+              </CardContent>
+            </Card>
+          </Link>
+        ))}
 
-        {/* 食事記録 */}
-        <Link href="/record" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-          <div className="text-center">
-            <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-              <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-              </svg>
+        {/* 設定カード */}
+        <Card variant="outlined" className="h-full border-2 bg-gray-50 text-gray-600 border-gray-200">
+          <CardContent className="flex flex-col items-center text-center p-6">
+            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+              <span className="text-2xl">⚙️</span>
             </div>
-            <h2 className="text-lg font-semibold text-gray-800 mb-2">食事記録</h2>
-            <p className="text-sm text-gray-600">毎日の離乳食を記録</p>
-          </div>
-        </Link>
-
-        {/* 履歴 */}
-        <Link href="/history" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-          <div className="text-center">
-            <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-              <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h2 className="text-lg font-semibold text-gray-800 mb-2">履歴</h2>
-            <p className="text-sm text-gray-600">過去の食事記録を確認</p>
-          </div>
-        </Link>
-
-        {/* 栄養分析 */}
-        <Link href="/analysis" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-          <div className="text-center">
-            <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
-              <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-              </svg>
-            </div>
-            <h2 className="text-lg font-semibold text-gray-800 mb-2">栄養分析</h2>
-            <p className="text-sm text-gray-600">栄養バランスをチャートで確認</p>
-          </div>
-        </Link>
-
-        {/* 成長レポート */}
-        <Link href="/report" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-          <div className="text-center">
-            <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3">
-              <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-            </div>
-            <h2 className="text-lg font-semibold text-gray-800 mb-2">成長レポート</h2>
-            <p className="text-sm text-gray-600">詳細な成長・栄養レポート</p>
-          </div>
-        </Link>
-
-        {/* 設定・その他 */}
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <div className="text-center">
-            <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
-              <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-            </div>
-            <h2 className="text-lg font-semibold text-gray-800 mb-2">設定</h2>
-            <p className="text-sm text-gray-600">アプリの設定と詳細情報</p>
-          </div>
-        </div>
+            <h3 className="text-xl font-bold mb-2">設定</h3>
+            <p className="text-sm opacity-80 leading-relaxed">
+              アプリの設定と詳細情報
+            </p>
+          </CardContent>
+        </Card>
       </div>
 
-      {/* 最近の活動 */}
-      <div className="mt-12 max-w-2xl mx-auto">
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">機能一覧</h2>
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <ul className="space-y-3 text-gray-700">
-            <li className="flex items-center">
-              <span className="w-2 h-2 bg-green-400 rounded-full mr-3"></span>
-              プロフィール管理 - 赤ちゃんの基本情報登録
-            </li>
-            <li className="flex items-center">
-              <span className="w-2 h-2 bg-green-400 rounded-full mr-3"></span>
-              食事記録 - 毎日の離乳食を簡単記録
-            </li>
-            <li className="flex items-center">
-              <span className="w-2 h-2 bg-green-400 rounded-full mr-3"></span>
-              履歴表示 - カレンダー形式で過去の記録を確認
-            </li>
-            <li className="flex items-center">
-              <span className="w-2 h-2 bg-green-400 rounded-full mr-3"></span>
-              栄養分析 - リアルタイムでの栄養バランス確認
-            </li>
-            <li className="flex items-center">
-              <span className="w-2 h-2 bg-green-400 rounded-full mr-3"></span>
-              成長レポート - 詳細な栄養摂取レポート
-            </li>
-            <li className="flex items-center">
-              <span className="w-2 h-2 bg-yellow-400 rounded-full mr-3"></span>
-              MicroCMS連携 - クラウド同期 (開発中)
-            </li>
-          </ul>
-        </div>
-      </div>
-    </main>
+      {/* 機能ステータス */}
+      <Card>
+        <CardHeader>
+          <CardTitle>機能一覧</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-3">
+            {statusItems.map((item, index) => (
+              <div key={index} className="flex items-center">
+                <div className={`w-3 h-3 rounded-full mr-4 ${
+                  item.status === 'completed' ? 'bg-green-400' : 'bg-yellow-400'
+                }`} />
+                <span className="text-gray-700 text-sm md:text-base">
+                  {item.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* ウェルカムメッセージ */}
+      <Card variant="elevated" className="bg-gradient-to-r from-blue-50 to-purple-50">
+        <CardContent className="text-center p-6 md:p-8">
+          <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-3">
+            🎉 ようこそ！
+          </h2>
+          <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+            赤ちゃんの離乳食記録を始めましょう。まずはプロフィールを登録して、
+            <br className="hidden md:block" />
+            日々の食事記録を通して成長をサポートしていきましょう。
+          </p>
+        </CardContent>
+      </Card>
+    </Container>
   );
 }
