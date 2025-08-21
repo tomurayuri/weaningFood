@@ -30,10 +30,10 @@ const Navigation = () => {
           <div className="flex items-center justify-between h-16">
             {/* ロゴ */}
             <Link href="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">離</span>
+              <div className="w-6 h-6 bg-blue-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-xs">離</span>
               </div>
-              <span className="text-xl font-bold text-gray-800">離乳食記録</span>
+              <span className="text-lg font-bold text-gray-800">離乳食記録</span>
             </Link>
 
             {/* ナビゲーションメニュー */}
@@ -50,7 +50,7 @@ const Navigation = () => {
                         : 'text-gray-600 hover:bg-gray-100 hover:text-gray-800'
                     }`}
                   >
-                    <Icon className="w-4 h-4" />
+                    <Icon className="w-3 h-3" />
                     <span>{item.name}</span>
                   </Link>
                 );
@@ -66,10 +66,10 @@ const Navigation = () => {
           <div className="flex items-center justify-between h-16">
             {/* ロゴ */}
             <Link href="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">離</span>
+              <div className="w-6 h-6 bg-blue-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-xs">離</span>
               </div>
-              <span className="text-lg font-bold text-gray-800">離乳食記録</span>
+              <span className="text-base font-bold text-gray-800">離乳食記録</span>
             </Link>
 
             {/* ハンバーガーメニューボタン */}
@@ -79,9 +79,9 @@ const Navigation = () => {
               aria-label="メニューを開く"
             >
               {isMobileMenuOpen ? (
-                <XIcon className="w-6 h-6" />
+                <XIcon className="w-3 h-3" />
               ) : (
-                <MenuIcon className="w-6 h-6" />
+                <MenuIcon className="w-3 h-3" />
               )}
             </button>
           </div>
@@ -102,7 +102,7 @@ const Navigation = () => {
                         : 'text-gray-600 hover:bg-gray-100 hover:text-gray-800'
                     }`}
                   >
-                    <Icon className="w-4 h-4" />
+                    <Icon className="w-3 h-3" />
                     <span>{item.name}</span>
                   </Link>
                 );
@@ -127,7 +127,7 @@ const Navigation = () => {
                     : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
                 }`}
               >
-                <Icon className="w-5 h-5 mb-1" />
+                <Icon className="w-3 h-3 mb-1" />
                 <span className="font-medium">{item.name}</span>
               </Link>
             );

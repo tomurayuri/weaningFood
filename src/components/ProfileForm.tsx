@@ -4,7 +4,10 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { BabyProfile } from '@/types';
-import { saveProfile, updateProfile, validateProfile } from '@/lib/profileManager';
+import { saveProfile, updateProfile } from '@/lib/profileManager';
+import Button from '@/components/ui/Button';
+import { Input } from '@/components/ui/Input';
+import Card, { CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 
 /**
  * Zodバリデーションスキーマ
@@ -115,86 +118,86 @@ export function ProfileForm({ existingProfile, onSuccess, onCancel }: ProfileFor
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">
-        {existingProfile ? 'プロフィール編集' : '赤ちゃんのプロフィール登録'}
-      </h2>
+    <Card className="max-w-md mx-auto">
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <span className="text-lg">👶</span>
+          {existingProfile ? 'プロフィール編集' : '赤ちゃんのプロフィール登録'}
+        </CardTitle>
+      </CardHeader>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        {/* 名前入力フィールド */}
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-            お名前 <span className="text-red-500">*</span>
-          </label>
-          <input
-            id="name"
-            type="text"
+      <CardContent>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          {/* 名前入力フィールド */}
+          <Input
+            label="お名前"
+            required
             {...register('name')} // React Hook Formに登録
-            className={`w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-              errors.name ? 'border-red-500' : ''
-            }`}
+            error={errors.name?.message}
             placeholder="赤ちゃんのお名前を入力してください"
+            leftIcon={
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            }
           />
-          {/* エラーメッセージ表示 */}
-          {errors.name && (
-            <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
-          )}
-        </div>
 
-        {/* 誕生日入力フィールド */}
-        <div>
-          <label htmlFor="birthDate" className="block text-sm font-medium text-gray-700 mb-1">
-            誕生日 <span className="text-red-500">*</span>
-          </label>
-          <input
-            id="birthDate"
+          {/* 誕生日入力フィールド */}
+          <Input
+            label="誕生日"
             type="date"
+            required
             {...register('birthDate')} // React Hook Formに登録
-            className={`w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-              errors.birthDate ? 'border-red-500' : ''
-            }`}
+            error={errors.birthDate?.message}
+            leftIcon={
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            }
           />
-          {/* エラーメッセージ表示 */}
-          {errors.birthDate && (
-            <p className="mt-1 text-sm text-red-600">{errors.birthDate.message}</p>
-          )}
-        </div>
 
-        {/* ボタン */}
-        <div className="flex space-x-3 pt-4">
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className={`flex-1 py-2 px-4 rounded-md font-medium text-white ${
-              isSubmitting
-                ? 'bg-gray-400 cursor-not-allowed'
-                : 'bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500'
-            }`}
-          >
-            {isSubmitting ? '保存中...' : existingProfile ? '更新' : '登録'}
-          </button>
-
-          {onCancel && (
-            <button
-              type="button"
-              onClick={onCancel}
-              className="flex-1 py-2 px-4 border border-gray-300 rounded-md font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          {/* ボタン */}
+          <div className="flex flex-col sm:flex-row gap-3 pt-4">
+            <Button
+              type="submit"
+              variant="primary"
+              size="lg"
+              fullWidth
+              loading={isSubmitting}
+              disabled={isSubmitting}
             >
-              キャンセル
-            </button>
-          )}
-        </div>
-      </form>
+              {isSubmitting ? '保存中...' : existingProfile ? '✏️ 更新' : '📝 登録'}
+            </Button>
 
-      {/* 入力ヒント */}
-      <div className="mt-6 p-4 bg-blue-50 rounded-md">
-        <h3 className="text-sm font-medium text-blue-800 mb-2">入力のヒント</h3>
-        <ul className="text-sm text-blue-700 space-y-1">
-          <li>• 名前は50文字以内で入力してください</li>
-          <li>• 誕生日は今日以前の日付を選択してください</li>
-          <li>• 月齢に応じて離乳食のステージが自動計算されます</li>
-        </ul>
-      </div>
-    </div>
+            {onCancel && (
+              <Button
+                type="button"
+                variant="outline"
+                size="lg"
+                fullWidth
+                onClick={onCancel}
+              >
+                キャンセル
+              </Button>
+            )}
+          </div>
+        </form>
+
+          {/* 入力ヒント */}
+          <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-200">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-sm">💡</span>
+              <h3 className="text-sm font-medium text-blue-800">入力のヒント</h3>
+            </div>
+            <ul className="text-sm text-blue-700 space-y-1">
+              <li>• 名前は50文字以内で入力してください</li>
+              <li>• 誕生日は今日以前の日付を選択してください</li>
+              <li>• 月齢に応じて離乳食のステージが自動計算されます</li>
+            </ul>
+          </div>
+        </CardContent>
+      </Card>
   );
 }
+
+export default ProfileForm;

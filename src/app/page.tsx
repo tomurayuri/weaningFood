@@ -59,8 +59,8 @@ export default function Home() {
     <Container maxWidth="xl" className="space-y-8">
       {/* ヘッダーセクション */}
       <div className="text-center py-8 md:py-12">
-        <div className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-6">
-          <span className="text-2xl md:text-3xl">🍼</span>
+        <div className="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-6">
+          <span className="text-lg md:text-xl">🍼</span>
         </div>
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
           離乳食記録アプリ
@@ -76,8 +76,8 @@ export default function Home() {
           <Link key={index} href={feature.href}>
             <Card hover className={`h-full border-2 ${feature.color}`}>
               <CardContent className="flex flex-col items-center text-center p-6">
-                <div className={`w-16 h-16 ${feature.iconBg} rounded-full flex items-center justify-center mb-4`}>
-                  <span className="text-2xl">{feature.icon}</span>
+                <div className={`w-10 h-10 md:w-12 md:h-12 ${feature.iconBg} rounded-full flex items-center justify-center mb-4`}>
+                  <span className="text-lg md:text-xl">{feature.icon}</span>
                 </div>
                 <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
                 <p className="text-sm opacity-80 leading-relaxed">
@@ -91,8 +91,8 @@ export default function Home() {
         {/* 設定カード */}
         <Card variant="outlined" className="h-full border-2 bg-gray-50 text-gray-600 border-gray-200">
           <CardContent className="flex flex-col items-center text-center p-6">
-            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
-              <span className="text-2xl">⚙️</span>
+            <div className="w-10 h-10 md:w-12 md:h-12 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+              <span className="text-lg md:text-xl">⚙️</span>
             </div>
             <h3 className="text-xl font-bold mb-2">設定</h3>
             <p className="text-sm opacity-80 leading-relaxed">
@@ -126,8 +126,9 @@ export default function Home() {
       {/* ウェルカムメッセージ */}
       <Card variant="elevated" className="bg-gradient-to-r from-blue-50 to-purple-50">
         <CardContent className="text-center p-6 md:p-8">
-          <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-3">
-            🎉 ようこそ！
+          <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-3 flex items-center justify-center gap-2">
+            <span className="text-xl">🎉</span>
+            <span>ようこそ！</span>
           </h2>
           <p className="text-gray-600 text-sm md:text-base leading-relaxed">
             赤ちゃんの離乳食記録を始めましょう。まずはプロフィールを登録して、

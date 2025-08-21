@@ -19,7 +19,7 @@ export default function AnalysisPage() {
       <Container>
         <Card className="bg-yellow-50 border-yellow-200">
           <CardContent className="text-center">
-            <div className="text-4xl mb-4">⚠️</div>
+            <div className="text-2xl mb-4">⚠️</div>
             <CardTitle className="text-yellow-800 mb-2">プロフィールが登録されていません</CardTitle>
             <p className="text-yellow-700 mb-4">栄養分析を行うには、まずプロフィールを登録してください。</p>
             <Button variant="primary" onClick={() => window.location.href = '/profile'}>
@@ -59,8 +59,9 @@ export default function AnalysisPage() {
     <Container maxWidth="xl" className="space-y-6">
       {/* ヘッダー */}
       <div className="text-center py-4">
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
-          📊 栄養分析
+        <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2 flex items-center justify-center gap-2">
+          <span className="text-xl md:text-2xl">📊</span>
+          <span>栄養分析</span>
         </h1>
         <p className="text-gray-600">赤ちゃんの栄養摂取状況を詳しく分析します</p>
       </div>
@@ -77,14 +78,16 @@ export default function AnalysisPage() {
               onClick={() => setSelectedPeriod('week')}
               className="flex-1 sm:flex-none"
             >
-              📅 週間 (7日)
+              <span className="text-xs mr-1">📅</span>
+              週間 (7日)
             </Button>
             <Button
               variant={selectedPeriod === 'month' ? 'primary' : 'outline'}
               onClick={() => setSelectedPeriod('month')}
               className="flex-1 sm:flex-none"
             >
-              📅 月間 (30日)
+              <span className="text-xs mr-1">📅</span>
+              月間 (30日)
             </Button>
           </div>
           <p className="text-sm text-gray-600">
@@ -139,7 +142,10 @@ export default function AnalysisPage() {
       {growthReport && growthReport.recommendations.length > 0 && (
         <Card>
           <CardHeader>
-            <CardTitle>💡 栄養士からのアドバイス</CardTitle>
+            <CardTitle className="flex items-center gap-2">
+              <span className="text-base">💡</span>
+              <span>栄養士からのアドバイス</span>
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
@@ -160,7 +166,7 @@ export default function AnalysisPage() {
       {analysis.recordedDays === 0 && (
         <Card className="bg-gray-50 border-gray-300">
           <CardContent className="text-center">
-            <div className="text-4xl mb-4">📝</div>
+            <div className="text-2xl mb-4">📝</div>
             <CardTitle className="text-gray-800 mb-2">記録がありません</CardTitle>
             <p className="text-gray-600 mb-4">選択した期間に食事記録がありません。まずは食事を記録してみましょう。</p>
             <Button variant="primary" onClick={() => window.location.href = '/record'}>
