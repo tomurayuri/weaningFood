@@ -2,8 +2,7 @@
 
 import { useState } from 'react';
 import { format } from 'date-fns';
-import { ja } from 'date-fns/locale';
-import { getAllMealRecords } from '@/lib/mealRecordManager';
+import { getMealRecords } from '@/lib/mealRecordManager';
 import { MealRecord } from '@/types';
 import Container from '@/components/ui/Container';
 import Card, { CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
@@ -14,7 +13,7 @@ export default function HistoryPage() {
   const [records, setRecords] = useState<MealRecord[]>([]);
 
   // 全記録を取得
-  const allRecords = getAllMealRecords();
+  const allRecords = getMealRecords();
   
   // 日付でグループ化
   const recordsByDate = allRecords.reduce((acc, record) => {
@@ -87,7 +86,7 @@ export default function HistoryPage() {
                       }`}
                     >
                       <div className="font-medium">
-                        {format(new Date(date), 'yyyy年M月d日', { locale: ja })}
+                        {format(new Date(date), 'yyyy年M月d日')}
                       </div>
                       <div className="text-sm opacity-70">
                         {recordsByDate[date].length}件の記録
@@ -106,7 +105,7 @@ export default function HistoryPage() {
             <Card>
               <CardHeader>
                 <CardTitle>
-                  {format(new Date(selectedDate), 'yyyy年M月d日', { locale: ja })}の記録
+                  {format(new Date(selectedDate), 'yyyy年M月d日')}の記録
                 </CardTitle>
               </CardHeader>
               <CardContent>
