@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { format } from 'date-fns';
 import { ja } from 'date-fns/locale';
-import { getAllMealRecords } from '@/lib/mealRecordManager';
+import { getMealRecords } from '@/lib/mealRecordManager';
 import { MealRecord } from '@/types';
 import Container from '@/components/ui/Container';
 import Card, { CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
@@ -14,7 +14,7 @@ export default function HistoryPage() {
   const [records, setRecords] = useState<MealRecord[]>([]);
 
   // 全記録を取得
-  const allRecords = getAllMealRecords();
+  const allRecords = getMealRecords();
   
   // 日付でグループ化
   const recordsByDate = allRecords.reduce((acc, record) => {
